@@ -3,7 +3,7 @@
 
 int main(int argc, char *argv[]){
         if(argc != 2){
-            fprintf(stderr, "Usage: ./myhexdump <filename.fileextension>\n");
+            fprintf(stderr, "Usage: ./myhexdump <filename>\n");
             return EXIT_FAILURE;
         }
 
