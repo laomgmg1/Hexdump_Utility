@@ -16,10 +16,21 @@ int main(int argc, char *argv[]){
         int byte; // int allows EOF(macro for -1) usage
         printf("offset\t\tbyte\n");
         size_t offset = 0;
-        // size_t num_bytes_in_line = 0;
+        size_t num_bytes_in_line = 0;
+        
+        printf("%08zX\t", offset); // Print initial offset
         while((byte = fgetc(fp)) != EOF){
-              printf("%08zX\t0x%02X\n", offset, byte);
-              offset++;
+            printf("0x%02X ", byte);
+            ++num_bytes_in_line;
+            ++offset; // Next byte's offset
+            if(num_bytes_in_line % 16 == 0){
+                printf("\n"); // Break into rows
+                printf("%08zX\t", offset); // Position of next byte
+            }
+        }
+
+        if(num_bytes_in_line % 16 != 0){
+            printf("\n");
         }
 
         fclose(fp);
